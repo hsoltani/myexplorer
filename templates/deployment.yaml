@@ -1,0 +1,138 @@
+apiVersion: {{ template "explorer.deployment.apiVersion" . }}
+kind: Deployment
+metadata:
+  name: {{ template "explorer.fullname" . }}
+  labels:
+    app: {{ template "explorer.name" . }}
+    chart: {{ template "explorer.chart" . }}
+    release: {{ .Release.Name | quote }}
+    heritage: {{ .Release.Service | quote }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "explorer.name" . }}
+      release: "{{ .Release.Name }}"
+  template:
+    metadata:
+      labels:
+        app: {{ template "explorer.name" . }}
+        chart: {{ template "explorer.chart" . }}
+        release: {{ .Release.Name | quote }}
+    spec:
+{{- include "explorer.imagePullSecrets" . | indent 6 }}
+      containers:
+      - name: {{ template "explorer.fullname" . }}
+        image: {{ template "explorer.image" . }}
+        imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+        env:
+        - name: POSTGRESQL_HOST
+          value: odoo-postgresql
+        - name: POSTGRESQL_URL
+          value: postgres://hppoc:password@odoo-postgresql:5432/fabricexplorer
+        - name: POSTGRESQL_USER
+          value: hppoc
+        - name: POSTGRESQL_PORT_NUMBER
+          value: {{ ternary "5432" .Values.externalDatabase.port .Values.postgresql.enabled | quote }}
+        - name: POSTGRESQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ ternary (include "explorer.postgresql.fullname" .) (printf "%s-%s" .Release.Name "externaldb") .Values.postgresql.enabled | quote }}
+              key: {{ ternary "postgresql-password" "db-password" .Values.postgresql.enabled | quote }}
+        - name: POSTGRES_DB
+          value: fabricexplorer
+        - name: TZ
+          value: "Asia/Singapore"
+        - name: DATABASE_HOST
+          value: odoo-postgresql
+        - name: DATABASE_DATABASE
+          value: fabricexplorer
+        - name: DATABASE_USERNAME
+          value: hppoc
+        - name: DATABASE_PASSWD
+          value: password
+        - name: LOG_LEVEL_APP
+          value: debug
+        - name: LOG_LEVEL_DB
+          value: debug
+        - name: LOG_LEVEL_CONSOLE
+          value: info
+        - name: LOG_CONSOLE_STDOUT
+          value: "true"
+        - name: DISCOVERY_AS_LOCALHOST
+          value: "false"
+        {{- if .Values.smtpHost }}
+        - name: SMTP_HOST
+          value: {{ .Values.smtpHost | quote }}
+        {{- end }}
+        {{- if .Values.smtpPort }}
+        - name: SMTP_PORT
+          value: {{ .Values.smtpPort | quote }}
+        {{- end }}
+        {{- if .Values.smtpUser }}
+        - name: SMTP_USER
+          value: {{ .Values.smtpUser | quote }}
+        {{- end }}
+        {{- if .Values.smtpPassword }}
+        - name: SMTP_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ template "explorer.fullname" . }}
+              key: smtp-password
+        {{- end }}
+        {{- if .Values.smtpProtocol }}
+        - name: SMTP_PROTOCOL
+          value: {{ .Values.smtpProtocol | quote }}
+        {{- end }}
+        ports:
+        - name: http
+          containerPort: 8069
+        {{- if .Values.livenessProbe.enabled }}
+        livenessProbe:
+          httpGet:
+            path: /
+            port: http
+          initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
+          periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
+          timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
+          successThreshold: {{ .Values.livenessProbe.successThreshold }}
+          failureThreshold: {{ .Values.livenessProbe.failureThreshold }}
+        {{- end }}
+        {{- if .Values.readinessProbe.enabled }}
+        readinessProbe:
+          httpGet:
+            path: /
+            port: http
+          initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
+          periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
+          timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
+          successThreshold: {{ .Values.readinessProbe.successThreshold }}
+          failureThreshold: {{ .Values.readinessProbe.failureThreshold }}
+        {{- end }}
+        resources:
+{{ toYaml .Values.resources | indent 10 }}
+        volumeMounts:
+        - name: explorer-data
+          mountPath: /bitnami/explorer
+        - name: connection
+          mountPath: /opt/explorer/app/platform/fabric/connection-profile
+        - name: config
+          mountPath: /opt/explorer/app/platform/fabric
+          subPath: config.json
+      volumes:
+      - name: connection
+        configMap:
+          name: {{ template "explorer.fullname" . }}-connectionprofile
+      - name: config
+        configMap:
+          name: {{ template "explorer.fullname" . }}-config
+      - name: explorer-data
+      {{- if .Values.persistence.enabled }}
+        persistentVolumeClaim:
+          claimName: {{ .Values.persistence.existingClaim | default (include "explorer.fullname" .) }}
+      {{- else }}
+        emptyDir: {}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+      {{- end }}
