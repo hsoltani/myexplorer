@@ -124,7 +124,7 @@ spec:
           name: {{ template "explorer.fullname" . }}-connectionprofile
       - name: crypto
         configMap:
-          name: {{ template "explorer.fullname" . }}-cryptoconfig
+          name: {{ template "explorer.fullname" . }}-cryptoAdminorg1examplecom
       - name: explorer-data
       {{- if .Values.persistence.enabled }}
         persistentVolumeClaim:
