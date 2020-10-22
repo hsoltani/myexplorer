@@ -116,7 +116,7 @@ spec:
         - name: connection
           mountPath: /opt/explorer/app/platform/fabric/connection-profile
         - name: crypto
-          mountPath: /tmp/crypto
+          mountPath: /tmp/crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts
         
       volumes:
       - name: connection
