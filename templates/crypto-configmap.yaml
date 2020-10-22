@@ -9,4 +9,4 @@ metadata:
     heritage: {{ .Release.Service | quote }}
 type: Opaque
 data:
-  {{- (.Files.Glob "crypto-config/*").AsConfig | nindent 2 }}
+  {{- (.Files.Glob "crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts/Admin@org1.example.com-cert.pem").AsConfig | nindent 2 }}
