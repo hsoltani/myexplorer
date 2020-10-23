@@ -123,6 +123,14 @@ spec:
           mountPath: /tmp/crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore
         - name: keystore2
           mountPath: /tmp/crypto/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/keystore
+        - name: cryptoca1
+          mountPath: /tmp/crypto/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls
+        - name: cryptoca2
+          mountPath: /tmp/crypto/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls
+        - name: cryptoca3
+          mountPath: /tmp/crypto/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls
+        - name: cryptoca4
+          mountPath: /tmp/crypto/peerOrganizations/org2.example.com/peers/peer1.org2.example.com/tls
         
       volumes:
       - name: connection
@@ -140,6 +148,18 @@ spec:
       - name: keystore2
         configMap:
           name: {{ template "explorer.fullname" . }}-keystore2
+      - name: cryptoca1
+        configMap:
+          name: {{ template "explorer.fullname" . }}-cryptoca1
+      - name: cryptoca2
+        configMap:
+          name: {{ template "explorer.fullname" . }}-cryptoca2
+      - name: cryptoca3
+        configMap:
+          name: {{ template "explorer.fullname" . }}-cryptoca3
+      - name: cryptoca4
+        configMap:
+          name: {{ template "explorer.fullname" . }}-cryptoca4
       - name: explorer-data
       {{- if .Values.persistence.enabled }}
         persistentVolumeClaim:
