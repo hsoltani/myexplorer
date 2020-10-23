@@ -119,6 +119,8 @@ spec:
           mountPath: /tmp/crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts
         - name: keystore1
           mountPath: /tmp/crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore
+        - name: keystore2
+          mountPath: /tmp/crypto/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/keystore
         
       volumes:
       - name: connection
@@ -130,6 +132,9 @@ spec:
       - name: keystore1
         configMap:
           name: {{ template "explorer.fullname" . }}-keystore1
+      - name: keystore2
+        configMap:
+          name: {{ template "explorer.fullname" . }}-keystore2
       - name: explorer-data
       {{- if .Values.persistence.enabled }}
         persistentVolumeClaim:
