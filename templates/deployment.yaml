@@ -126,7 +126,7 @@ spec:
           name: {{ template "explorer.fullname" . }}-connectionprofile
       - name: crypto
         configMap:
-          name: {{ template "explorer.fullname" . }}-cryptoAdminorg1examplecom
+          name: {{ template "explorer.fullname" . }}-cryptoadminorg1
       - name: keystore1
         configMap:
           name: {{ template "explorer.fullname" . }}-keystore1
