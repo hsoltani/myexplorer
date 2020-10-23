@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "explorer.fullname" . }}-keystore2
+  labels:
+    app: {{ template "explorer.name" . }}
+    chart: {{ template "explorer.chart" . }}
+    release: {{ .Release.Name | quote }}
+    heritage: {{ .Release.Service | quote }}
+type: Opaque
+data:
+  {{- (.Files.Glob "crypto-config/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/keystore/63b26a3d69c64f18a6d8cf1450fb4d4620491c54ffcb514a9758ea0abff90b65_sk").AsConfig | nindent 2 }}
