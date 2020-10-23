@@ -117,6 +117,8 @@ spec:
           mountPath: /opt/explorer/app/platform/fabric/connection-profile
         - name: crypto
           mountPath: /tmp/crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts
+        - name: crypto2
+          mountPath: /tmp/crypto/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/signcerts
         - name: keystore1
           mountPath: /tmp/crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore
         - name: keystore2
@@ -129,6 +131,9 @@ spec:
       - name: crypto
         configMap:
           name: {{ template "explorer.fullname" . }}-cryptoadminorg1
+      - name: crypto2
+        configMap:
+          name: {{ template "explorer.fullname" . }}-cryptoadminorg2
       - name: keystore1
         configMap:
           name: {{ template "explorer.fullname" . }}-keystore1
