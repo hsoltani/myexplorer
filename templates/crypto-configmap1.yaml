@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ template "explorer.fullname" . }}-cryptoAdminorg1examplecom
+  name: {{ template "explorer.fullname" . }}-cryptoAdminorg1
   labels:
     app: {{ template "explorer.name" . }}
     chart: {{ template "explorer.chart" . }}
