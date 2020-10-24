@@ -131,8 +131,6 @@ spec:
             runAsUser: {{ .Values.securityContext.runAsUser }}
           {{- end }}
           env:
-            - name: POSTGRESQL_PGHBA_REMOVE_FILTERS
-              value: local, md5
             - name: TZ
               value: "Asia/Singapore"
             - name: DATABASE_DATABASE
