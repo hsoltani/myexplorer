@@ -146,8 +146,8 @@ postgresqlDatabase: fabricexplorer
 ## PostgreSQL data dir
 ## ref: https://github.com/bitnami/bitnami-docker-postgresql/blob/master/README.md
 ##
-postgresqlDataDir: /bitnami/postgresql/data
-
+##postgresqlDataDir: /bitnami/postgresql/data
+postgresqlDataDir: /var/lib/postgresql/data
 ## An array to add extra environment variables
 ## For example:
 ## extraEnv:
