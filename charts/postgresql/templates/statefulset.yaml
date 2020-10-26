@@ -134,7 +134,8 @@ spec:
             - /bin/sh
             - -cx
             - |
-              mkdir /var/run/postgresql
+              apk add sudo
+              sudo mkdir /var/run/postgresql
               sudo ln -s /tmp/.s.PGSQL.5432 /var/run/postgresql/.s.PGSQL.5432 
           env:
             - name: TZ
