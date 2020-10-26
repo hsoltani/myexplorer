@@ -134,6 +134,7 @@ spec:
             - /bin/sh
             - -cx
             - |
+              apk update
               mkdir -p /var/run/postgresql
               chown -R postgres:postgres /var/run/postgresql
               chmod 2777 /var/run/postgresql
