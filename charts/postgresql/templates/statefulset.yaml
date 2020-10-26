@@ -130,7 +130,7 @@ spec:
           securityContext:
             runAsUser: {{ .Values.securityContext.runAsUser }}
           {{- end }}
-          command: ["sh" , "-c" , "chmod -R 777 /var/run && mkdir -p /var/run/postgresql && ln -s /tmp/.s.PGSQL.5432 /var/run/postgresql/.s.PGSQL.5432"]
+          command: ["sh" , "-c" , "mkdir -m 0700 -p /var/run/postgresql && ln -s /tmp/.s.PGSQL.5432 /var/run/postgresql/.s.PGSQL.5432"]
             
           env:
             - name: TZ
