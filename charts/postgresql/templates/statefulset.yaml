@@ -130,7 +130,7 @@ spec:
           securityContext:
             runAsUser: {{ .Values.securityContext.runAsUser }}
           {{- end }}
-          command: ["sh" , "-c" , "apk add sudo && sudo mkdir -p /var/run/postgresql && sudo ln -s /tmp/.s.PGSQL.5432 /var/run/postgresql/.s.PGSQL.5432]
+          command: ["sh" , "-c" , "apk add sudo && sudo mkdir -p /var/run/postgresql && sudo ln -s /tmp/.s.PGSQL.5432 /var/run/postgresql/.s.PGSQL.5432"]
             
           env:
             - name: TZ
