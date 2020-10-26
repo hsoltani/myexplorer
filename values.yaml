@@ -62,7 +62,7 @@ image:
 externalDatabase:
 ## All of these values are only used when postgresql.enabled is set to false
   ## Database host
-  host: db
+  host: odoo-postgresql
 
   ## non-root Username for Odoo database
   user: hppoc
