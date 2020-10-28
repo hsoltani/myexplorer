@@ -131,7 +131,7 @@ spec:
             runAsUser: {{ .Values.securityContext.runAsUser }}
           {{- end }}
           
-          command: ["sh" , "-c" , "ln -s /tmp/.s.PGSQL.5432 /var/run/postgresql/.s.PGSQL.5432"]
+          #command: ["sh" , "-c" , "ln -s /tmp/.s.PGSQL.5432 /var/run/postgresql/.s.PGSQL.5432"]
             
           env:
             - name: TZ
