@@ -440,7 +440,7 @@ commonAnnotations: {}
 networkPolicy:
   ## Enable creation of NetworkPolicy resources. Only Ingress traffic is filtered for now.
   ##
-  enabled: false
+  enabled: true
 
   ## The Policy model to apply. When set to false, only pods with the correct
   ## client label will have network access to the port PostgreSQL is listening
