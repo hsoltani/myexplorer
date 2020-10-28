@@ -265,7 +265,7 @@ spec:
                 name: {{ tpl .Values.extraEnvVarsCM . }}
           {{- end }}
 
-          command: ["sh" , "-c" , "chown -R hppoc:hppoc /var/run/postgresql"]
+          command: ["sh" , "-c" , "chown -R hppoc /var/run/postgresql"]
           ports:
             - name: tcp-postgresql
               containerPort: {{ template "postgresql.port" . }}
