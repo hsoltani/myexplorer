@@ -132,7 +132,8 @@ spec:
           {{- end }}
           
           #command: ["sh" , "-c" , "ln -s /tmp/.s.PGSQL.5432 /var/run/postgresql/.s.PGSQL.5432"]
-            
+          command: ["sh" , "-c" , "chown -R postgres:postgres /var/run/postgresql"]
+
           env:
             - name: TZ
               value: "Asia/Singapore"
