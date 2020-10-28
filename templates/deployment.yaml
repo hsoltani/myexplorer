@@ -48,8 +48,8 @@ spec:
           value: fabricexplorer
         - name: DATABASE_USERNAME
           value: hppoc
-        - name: DATABASE_PASSWD
-          value: password
+        #- name: DATABASE_PASSWD
+        #  value: password
         - name: LOG_LEVEL_APP
           value: debug
         - name: LOG_LEVEL_DB
