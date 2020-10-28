@@ -137,10 +137,6 @@ spec:
           env:
             - name: TZ
               value: "Asia/Singapore"
-            - name: DATABASE_HOST
-              value: "127.0.0.1"
-            - name: DATABASE_PORT
-              value: "5432"
             - name: DATABASE_DATABASE
               value: fabricexplorer
             - name: DATABASE_USERNAME
