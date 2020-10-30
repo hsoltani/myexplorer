@@ -14,10 +14,10 @@ global:
 ##
 image:
   registry: docker.io
-  repository: hyperledger/explorer-db
-  tag: latest
-  #repository: bitnami/postgresql
-  #tag: 11.8.0-debian-10-r19
+  #repository: hyperledger/explorer-db
+  #tag: latest
+  repository: bitnami/postgresql
+  tag: 11.8.0-debian-10-r19
   
   ## Specify a imagePullPolicy
   ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
