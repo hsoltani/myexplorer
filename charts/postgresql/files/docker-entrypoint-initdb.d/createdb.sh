@@ -5,16 +5,16 @@
 
 #support for OS
 case $OSTYPE in
-darwin*) psql postgres -v dbname=$DATABASE_DATABASE -v user=$DATABASE_USERNAME -v passwd=$DATABASE_PASSWD -f ./explorerpg.sql ;
-psql postgres -v dbname=$DATABASE_DATABASE -v user=$DATABASE_USERNAME -v passwd=$DATABASE_PASSWD -f ./updatepg.sql ;;
+darwin*) psql postgres -d fabricexplorer -U hppoc -W password -f ./explorerpg.sql ;
+psql postgres -d fabricexplorer -U hppoc -W password -f ./updatepg.sql ;;
 linux*)
 if [ $(id -un) = 'postgres' ]; then
   PSQL="psql"
 else
   PSQL="sudo -u postgres psql"
 fi;
-${PSQL} -v dbname=$DATABASE_DATABASE -v user=$DATABASE_USERNAME -v passwd=$DATABASE_PASSWD -f ./explorerpg.sql ;
-${PSQL} -v dbname=$DATABASE_DATABASE -v user=$DATABASE_USERNAME -v passwd=$DATABASE_PASSWD -f ./updatepg.sql ;;
+${PSQL} -d fabricexplorer -U hppoc -W password -f ./explorerpg.sql ;
+${PSQL} -d fabricexplorer -U hppoc -W password -f ./updatepg.sql ;;
 esac
 
 
