@@ -26,9 +26,9 @@ spec:
         imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
         env:
         - name: POSTGRESQL_HOST
-          value: odoo-postgresql
+          value: odoo-postgresql-0
         - name: POSTGRESQL_URL
-          value: postgres://hppoc:password@odoo-postgresql:5432/fabricexplorer
+          value: postgres://hppoc:password@odoo-postgresql-0:5432/fabricexplorer
         - name: POSTGRESQL_USER
           value: hppoc
         - name: POSTGRESQL_PORT_NUMBER
@@ -43,7 +43,7 @@ spec:
         - name: TZ
           value: "Asia/Singapore"
         - name: DATABASE_HOST
-          value: odoo-postgresql
+          value: odoo-postgresql-0
         - name: DATABASE_DATABASE
           value: fabricexplorer
         - name: DATABASE_USERNAME
