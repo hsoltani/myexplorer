@@ -43,7 +43,11 @@ image:
 ## String to fully override postgresql.fullname template
 ##
 # fullnameOverride:
-
+node:
+  image:
+    registry: docker.io
+    repository: bitnami/node
+    tag: 10.23.0-debian-10-r0
 ##
 ## Init containers parameters:
 ## volumePermissions: Change the owner of the persist volume mountpoint to RunAsUser:fsGroup
