@@ -65,7 +65,7 @@ externalDatabase:
   host: odoo-postgresql-0
 
   ## non-root Username for Odoo database
-  user: hppoc
+  user: postgres
 
   ## Database password
   password: password
@@ -83,7 +83,7 @@ postgresql:
   ## PostgreSQL password
   ## ref: https://hub.docker.com/_/postgres/
   ##
-  postgresqlUsername: hppoc
+  #postgresqlUsername: hppoc
   postgresqlPassword: password
 
   ## Enable persistence using Persistent Volume Claims
