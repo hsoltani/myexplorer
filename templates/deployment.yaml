@@ -30,7 +30,7 @@ spec:
         - name: POSTGRESQL_URL
           value: postgres://postgres:password@odoo-postgresql-0:5432/postgres
         - name: POSTGRESQL_USER
-          value: hppoc
+          value: postgres
         - name: POSTGRESQL_PORT_NUMBER
           value: {{ ternary "5432" .Values.externalDatabase.port .Values.postgresql.enabled | quote }}
         - name: POSTGRESQL_PASSWORD
