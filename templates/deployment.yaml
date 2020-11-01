@@ -40,16 +40,6 @@ spec:
               key: {{ ternary "postgresql-password" "db-password" .Values.postgresql.enabled | quote }}
         - name: POSTGRES_DB
           value: fabricexplorer
-        - name: TZ
-          value: "Asia/Singapore"
-        - name: DATABASE_HOST
-          value: odoo-postgresql
-        - name: DATABASE_DATABASE
-          value: fabricexplorer
-        - name: DATABASE_USERNAME
-          value: hppoc
-        - name: DATABASE_PASSWD
-          value: password
         - name: LOG_LEVEL_APP
           value: debug
         - name: LOG_LEVEL_DB
