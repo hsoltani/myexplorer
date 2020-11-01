@@ -205,20 +205,20 @@ spec:
                   key: postgresql-postgres-password
             {{- end }}
             {{- end }}
-            - name: POSTGRES_USER
+            - name: POSTGRESQL_USER
               value: {{ include "postgresql.username" . | quote }}
             {{- if .Values.usePasswordFile }}
-            - name: POSTGRES_PASSWORD_FILE
+            - name: POSTGRESQL_PASSWORD_FILE
               value: "/opt/bitnami/postgresql/secrets/postgresql-password"
             {{- else }}
-            - name: POSTGRES_PASSWORD
+            - name: POSTGRESQL_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: {{ template "postgresql.secretName" . }}
                   key: postgresql-password
             {{- end }}
             {{- if (include "postgresql.database" .) }}
-            - name: POSTGRES_DB
+            - name: POSTGRESQL_DB
               value: {{ (include "postgresql.database" .) | quote }}
             {{- end }}
             {{- if .Values.extraEnv }}
