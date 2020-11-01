@@ -28,9 +28,9 @@ spec:
         - name: POSTGRESQL_HOST
           value: odoo-postgresql-0
         - name: POSTGRESQL_URL
-          value: postgres://postgres:password@odoo-postgresql-0:5432/postgres
+          value: postgres://hppoc:password@odoo-postgresql-0:5432/fabricexplorer
         - name: POSTGRESQL_USER
-          value: postgres
+          value: hppoc
         - name: POSTGRESQL_PORT_NUMBER
           value: {{ ternary "5432" .Values.externalDatabase.port .Values.postgresql.enabled | quote }}
         - name: POSTGRESQL_PASSWORD
@@ -39,15 +39,15 @@ spec:
               name: {{ ternary (include "explorer.postgresql.fullname" .) (printf "%s-%s" .Release.Name "externaldb") .Values.postgresql.enabled | quote }}
               key: {{ ternary "postgresql-password" "db-password" .Values.postgresql.enabled | quote }}
         - name: POSTGRES_DB
-          value: postgres
+          value: fabricexplorer
         - name: TZ
           value: "Asia/Singapore"
         - name: DATABASE_HOST
           value: odoo-postgresql-0
         - name: DATABASE_DATABASE
-          value: postgres
+          value: fabricexplorer
         - name: DATABASE_USERNAME
-          value: postgres
+          value: hppoc
         - name: DATABASE_PASSWD
           value: password
         - name: LOG_LEVEL_APP
