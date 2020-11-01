@@ -42,14 +42,7 @@ spec:
           value: fabricexplorer
         - name: DATABASE_HOST
           value: odoo-postgresql
-        - name: LOG_LEVEL_APP
-          value: debug
-        - name: LOG_LEVEL_DB
-          value: debug
-        - name: LOG_LEVEL_CONSOLE
-          value: info
-        - name: LOG_CONSOLE_STDOUT
-          value: "true"
+        
         - name: DISCOVERY_AS_LOCALHOST
           value: "false"
         {{- if .Values.smtpHost }}
